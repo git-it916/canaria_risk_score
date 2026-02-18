@@ -1,0 +1,14 @@
+# Global Multi-Asset Risk Scoring Model — dependencies
+#
+# Bloomberg connectivity
+xbbg>=0.3.7          # Bloomberg BDH/BDS/BDP wrapper (requires installed Bloomberg Terminal)
+
+# Core scientific stack
+numpy>=1.24
+pandas>=2.0
+matplotlib>=3.7
+openpyxl>=3.1       # Excel 보고서 생성
+
+# Optional — used only if you extend the model
+# scipy>=1.11        # for more advanced statistics
+# seaborn>=0.12      # for heatmap-style signal grids
