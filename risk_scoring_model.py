@@ -24,6 +24,7 @@ Usage
 
 from __future__ import annotations
 
+import os
 import warnings
 from datetime import datetime, timedelta
 
@@ -1717,11 +1718,16 @@ class RiskScoringModel:
 # ── Entry point ────────────────────────────────────────────────────────────────
 
 if __name__ == "__main__":
+    # ── 날짜별 출력 폴더 생성 ─────────────────────────────────────────
+    today_str = datetime.now().strftime("%Y-%m-%d")
+    out_dir = os.path.join("canaria_risk_score_output", today_str)
+    os.makedirs(out_dir, exist_ok=True)
+
     model = RiskScoringModel()
 
     # end_date 기본값 = 오늘, start_date 기본값 = 2년 전
     # 필요시 직접 지정:  model.run(start_date="2020-01-01", end_date="2025-02-19")
-    results = model.run(plot=True)
+    results = model.run(plot=False)
 
     # ── 핵심 출력: 오늘의 리스크 현황 ──────────────────────────────────
     model.daily_snapshot()
@@ -1730,5 +1736,10 @@ if __name__ == "__main__":
     print("최근 10 영업일:")
     print(results.tail(10).to_string())
 
+    # ── 차트 저장 ────────────────────────────────────────────────────────
+    chart_path = os.path.join(out_dir, "risk_score_chart.png")
+    model.plot_results(save_path=chart_path)
+
     # ── Excel 보고서 저장 ───────────────────────────────────────────────
-    model.to_excel("risk_score_report.xlsx")
+    excel_path = os.path.join(out_dir, "risk_score_report.xlsx")
+    model.to_excel(excel_path)
