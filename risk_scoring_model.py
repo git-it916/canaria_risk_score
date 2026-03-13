@@ -1741,5 +1741,6 @@ if __name__ == "__main__":
     model.plot_results(save_path=chart_path)
 
     # ── Excel 보고서 저장 ───────────────────────────────────────────────
-    excel_path = os.path.join(out_dir, "risk_score_report.xlsx")
+    today_str = model.scores.index[-1].strftime("%Y%m%d")
+    excel_path = os.path.join(out_dir, f"risk_score_report_{today_str}.xlsx")
     model.to_excel(excel_path)
