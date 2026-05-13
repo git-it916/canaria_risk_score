@@ -1,7 +1,11 @@
 # Global Multi-Asset Risk Scoring Model — dependencies
 #
-# Bloomberg connectivity
+# Bloomberg connectivity (v1 — risk_scoring_model.py)
 xbbg>=0.3.7          # Bloomberg BDH/BDS/BDP wrapper (requires installed Bloomberg Terminal)
+
+# Free API alternatives (v2 — risk_scoring_model_2.py)
+yfinance>=0.2.40     # Yahoo Finance: ETF / index 가격 (12 tickers)
+fredapi>=0.5.2       # FRED: HY OAS + 미국 매크로 지표 (4 series)
 
 # Core scientific stack
 numpy>=1.24
