@@ -515,7 +515,10 @@ class RiskScoringModelV2(RiskScoringModel):
 if __name__ == "__main__":
     # 매일 KST 08:30 실행 가정. end_date 는 모델의 run() 기본값(=오늘) 사용.
     today_str = datetime.now().strftime("%Y-%m-%d")
-    out_dir = os.path.join("canaria_risk_score_output", today_str)
+    out_dir = os.path.join(
+        r"C:\Users\10845\Documents\quant_project\[오전] global risk score",
+        today_str,
+    )
     os.makedirs(out_dir, exist_ok=True)
 
     model = RiskScoringModelV2()

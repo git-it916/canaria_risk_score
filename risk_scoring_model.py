@@ -43,12 +43,13 @@ try:
     from xbbg import blp
 
     _BBG_AVAILABLE = True
-except ImportError:
+except BaseException as exc:
     _BBG_AVAILABLE = False
     print(
         "[WARN] xbbg / Bloomberg Terminal not available.\n"
         "       Install with: pip install xbbg\n"
-        "       The model will run in DEMO mode with synthetic data."
+        "       The model will run in DEMO mode with synthetic data.\n"
+        f"       Details: {exc}"
     )
 
 
