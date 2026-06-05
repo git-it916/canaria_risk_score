@@ -1720,8 +1720,11 @@ class RiskScoringModel:
 
 if __name__ == "__main__":
     # ── 날짜별 출력 폴더 생성 ─────────────────────────────────────────
+    # 출력 루트는 항상 이 스크립트가 위치한 폴더 기준 canaria_risk_score_output 으로 고정
+    # (실행 위치/현재 작업 디렉토리와 무관하게 동작)
     today_str = datetime.now().strftime("%Y-%m-%d")
-    out_dir = os.path.join("canaria_risk_score_output", today_str)
+    base_dir = os.path.dirname(os.path.abspath(__file__))
+    out_dir = os.path.join(base_dir, "canaria_risk_score_output", today_str)
     os.makedirs(out_dir, exist_ok=True)
 
     model = RiskScoringModel()
